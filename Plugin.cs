@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BepInEx;
+using BepInEx.Configuration;
 using Pixelfactor.IP.Engine.Settings;
 using UnityEditor;
 using UnityEngine;
@@ -29,6 +31,9 @@ namespace AeroForta
         private int selectedObjectNameIndex = 0;
         private bool foundObject = false;
 
+        private ConfigEntry<string> windowOpenKeyConfig;
+        private KeyCode windowOpenKey = KeyCode.F8;
+
         private float guiWidth = 600f;
         private float guiHeight = 600f;
 
@@ -39,12 +44,22 @@ namespace AeroForta
 
         private void Awake()
         {
+            windowOpenKeyConfig = Config.Bind(
+                "General",
+                "WindowOpenKey",
+                "F8",
+                "Key to open the window"
+            );
+            if (Enum.TryParse(windowOpenKeyConfig.Value, out KeyCode parsedKey))
+            {
+                windowOpenKey = parsedKey;
+            }
             Logger.LogInfo($"Plugin Game Global Config is loaded!");
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.F8))
+            if (Input.GetKeyDown(windowOpenKey))
             {
                 isWindowOpen = !isWindowOpen;
             }
