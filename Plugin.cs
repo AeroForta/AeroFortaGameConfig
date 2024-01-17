@@ -10,13 +10,23 @@ using UnityEngine.SceneManagement;
 
 namespace AeroForta
 {
-    [BepInPlugin("com.aeroforta.globalconfig", "Game Global Config", "1.0.0.0")]
+    [BepInPlugin("com.aeroforta.gameobjecteditorconfig", "Game Object Editor Config", "1.0.0.0")]
     public class Plugin : BaseUnityPlugin
     {
         private bool isWindowOpen = false;
         private bool isSelectingObject = false;
 
-        private Rect windowRect = new Rect(20, 20, 400, 300);
+        private ConfigEntry<float> guiWidthConfig;
+        private ConfigEntry<float> guiHeightConfig;
+        private ConfigEntry<float> dialogGuiWidthConfig;
+        private ConfigEntry<float> dialogGuiHeightConfig;
+
+        private float guiWidth = 600f;
+        private float guiHeight = 600f;
+        private float dialogGuiWidth = 400f;
+        private float dialogGuiHeight = 300f;
+
+        private Rect windowRect = new Rect(20, 20, 600, 600);
         private Rect selectionDialogRect = new Rect(
             Screen.width / 2 - 150,
             Screen.height / 2 - 100,
@@ -34,16 +44,36 @@ namespace AeroForta
         private ConfigEntry<string> windowOpenKeyConfig;
         private KeyCode windowOpenKey = KeyCode.F8;
 
-        private float guiWidth = 600f;
-        private float guiHeight = 600f;
-
-        private float dialogGuiWidth = 400f;
-        private float dialogGuiHeight = 300f;
-
         private List<MonoBehaviour> objectSettingsList = new List<MonoBehaviour>();
 
         private void Awake()
         {
+            guiWidthConfig = Config.Bind("General", "GUIWidth", 600f, "Width of the main GUI");
+            guiHeightConfig = Config.Bind("General", "GUIHeight", 600f, "Height of the main GUI");
+            dialogGuiWidthConfig = Config.Bind(
+                "General",
+                "DialogGUIWidth",
+                400f,
+                "Width of the dialog GUI"
+            );
+            dialogGuiHeightConfig = Config.Bind(
+                "General",
+                "DialogGUIHeight",
+                300f,
+                "Height of the dialog GUI"
+            );
+            guiWidth = guiWidthConfig.Value;
+            guiHeight = guiHeightConfig.Value;
+            dialogGuiWidth = dialogGuiWidthConfig.Value;
+            dialogGuiHeight = dialogGuiHeightConfig.Value;
+            windowRect = new Rect(20, 20, guiWidth, guiHeight);
+            selectionDialogRect = new Rect(
+                Screen.width / 2 - 150,
+                Screen.height / 2 - 100,
+                dialogGuiWidth,
+                dialogGuiHeight
+            );
+
             windowOpenKeyConfig = Config.Bind(
                 "General",
                 "WindowOpenKey",
@@ -94,10 +124,7 @@ namespace AeroForta
 
             if (GUILayout.Button("Apply GUI Size"))
             {
-                windowRect.width = Mathf.Max(200, guiWidth);
-                windowRect.height = Mathf.Max(200, guiHeight);
-                windowRect.x = Mathf.Clamp(windowRect.x, 0, Screen.width - windowRect.width);
-                windowRect.y = Mathf.Clamp(windowRect.y, 0, Screen.height - windowRect.height);
+                ApplyGUISize();
             }
             GUILayout.Label("Search GameObject:");
             searchQuery = GUILayout.TextField(searchQuery);
@@ -134,6 +161,25 @@ namespace AeroForta
             GUILayout.EndScrollView();
 
             GUI.DragWindow();
+        }
+
+        private void ApplyGUISize()
+        {
+            guiWidth = Mathf.Max(200, guiWidth);
+            guiHeight = Mathf.Max(200, guiHeight);
+            dialogGuiWidth = Mathf.Max(200, dialogGuiWidth);
+            dialogGuiHeight = Mathf.Max(200, dialogGuiHeight);
+
+            guiWidthConfig.Value = guiWidth;
+            guiHeightConfig.Value = guiHeight;
+            dialogGuiWidthConfig.Value = dialogGuiWidth;
+            dialogGuiHeightConfig.Value = dialogGuiHeight;
+            windowRect.width = guiWidth;
+            windowRect.height = guiHeight;
+            selectionDialogRect.width = dialogGuiWidth;
+            selectionDialogRect.height = dialogGuiHeight;
+
+            Config.Save();
         }
 
         private void SearchObjects()
@@ -175,18 +221,7 @@ namespace AeroForta
             GUILayout.Space(20);
             if (GUILayout.Button("Apply GUI Size"))
             {
-                selectionDialogRect.width = Mathf.Max(200, dialogGuiWidth);
-                selectionDialogRect.height = Mathf.Max(200, dialogGuiHeight);
-                selectionDialogRect.x = Mathf.Clamp(
-                    selectionDialogRect.x,
-                    0,
-                    Screen.width - selectionDialogRect.width
-                );
-                selectionDialogRect.y = Mathf.Clamp(
-                    selectionDialogRect.y,
-                    0,
-                    Screen.height - selectionDialogRect.height
-                );
+                ApplyGUISize();
             }
             GUILayout.Label($"Found {targetObjectNames.Count} objects.");
 
