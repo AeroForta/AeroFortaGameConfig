@@ -16,7 +16,7 @@ namespace AeroForta
         private bool isWindowOpen = false;
         private bool isSelectingObject = false;
 
-        private Rect windowRect = new Rect(20, 20, 400, 300);
+        private Rect windowRect = new Rect(20, 20, 600, 600);
         private Rect selectionDialogRect = new Rect(
             Screen.width / 2 - 150,
             Screen.height / 2 - 100,
