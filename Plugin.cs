@@ -84,7 +84,7 @@ namespace AeroForta
             {
                 windowOpenKey = parsedKey;
             }
-            Logger.LogInfo($"Plugin Game Global Config is loaded!");
+            Logger.LogInfo($"Plugin Game Object Editor Config is loaded!");
         }
 
         private void Update()
@@ -99,7 +99,7 @@ namespace AeroForta
         {
             if (isWindowOpen)
             {
-                windowRect = GUI.Window(0, windowRect, DoMyWindow, "Game Global Config");
+                windowRect = GUI.Window(0, windowRect, DoMyWindow, "Game Object Editor Config");
             }
             if (isSelectingObject)
             {
