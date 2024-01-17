@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b7pgCBCBtWSCW4CR35VQnIQ2hhzKk5vmAEe0IQL+omt4UQS5UdHU2StxE2x7GU3VcgEKTHpIZrfBKHb8rZhtrw==",
+  "dgSpecHash": "hrmdGP+TWjH0JboK++7nGI/Wyzc6nt+ylVo/My0vO3pUquqZKznconsiFE6sGQXeikUrgvR1miiy1Sp4uOg3uw==",
   "success": true,
-  "projectFilePath": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameConfig\\AeroFortaGameConfig.csproj",
+  "projectFilePath": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameObjectEditor\\AeroFortaGameObjectEditor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER NITRO\\.nuget\\packages\\bepinex.analyzers\\1.0.8\\bepinex.analyzers.1.0.8.nupkg.sha512",
     "C:\\Users\\ACER NITRO\\.nuget\\packages\\bepinex.baselib\\5.4.20\\bepinex.baselib.5.4.20.nupkg.sha512",

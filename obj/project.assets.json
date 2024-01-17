@@ -913,14 +913,14 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameConfig\\AeroFortaGameConfig.csproj",
-      "projectName": "AeroFortaGameConfig",
-      "projectPath": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameConfig\\AeroFortaGameConfig.csproj",
+      "projectUniqueName": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameObjectEditor\\AeroFortaGameObjectEditor.csproj",
+      "projectName": "AeroFortaGameObjectEditor",
+      "projectPath": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameObjectEditor\\AeroFortaGameObjectEditor.csproj",
       "packagesPath": "C:\\Users\\ACER NITRO\\.nuget\\packages\\",
-      "outputPath": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameConfig\\obj\\",
+      "outputPath": "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameObjectEditor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameConfig\\NuGet.Config",
+        "d:\\IP2\\Plugin Dev\\AeroForta Plugin\\AeroFortaGameObjectEditor\\NuGet.Config",
         "C:\\Users\\ACER NITRO\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
